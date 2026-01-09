@@ -4,6 +4,8 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
+#include <filesystem>
+#include <fstream>
 // ===================== analyzer.h (inlined) =====================
 
 struct ZoneStats {
@@ -40,7 +42,7 @@ struct SlotKeyHash {
 class TripAnalyzer {
 public:
     // Parse Trips.csv, skip dirty rows, never crash
-    void ingestStdin();
+    void ingestFile(const std::string& csvPath);
     
     // Top K zones: count desc, zone asc
     std::vector<ZoneCount> topZones(int k = 10) const;
@@ -53,3 +55,4 @@ private:
     std::unordered_map<std::string, ZoneStats> map;
     
 };
+
